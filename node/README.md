@@ -28,7 +28,61 @@ Options for environment variables
 
 
 
-Build and push:
-docker-compose -f docker-compose.prod.yml up --build --remove-orphans && \\
-docker image tag node-demoapp ghcr.io/pjuentgen/node-demoapp && \\
-docker push ghcr.io/pjuentgen/node-demoapp:latest 
+This demo application can easiely be used for docker:
+
+`docker run -ti -e PORT=8080 -e TIME=500 ghcr.io/pjuentgen/node-demoapp:latest`
+
+and this is an example deployment for K8s (for more details about OpenTelemetry deployments on K8s take a look at: [my other git repo](https://github.com/pjuentgen/demo-configs/tree/main/k8s)).
+You can just run `kubectl apply -f https://raw.githubusercontent.com/pjuentgen/demo-configs/main/k8s/demo-app/demoapp-deployment.yaml` to deploy the app:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-demoapp
+  labels:
+    app: node-demoapp
+spec:
+  selector:
+    matchLabels:
+      app: node-demoapp
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: node-demoapp
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"        
+    spec:
+      containers:
+      - name: node-demoapp
+        image: ghcr.io/pjuentgen/node-demoapp:latest
+        imagePullPolicy: Always
+        env:           
+          - name: OTEL_LOG_LEVEL
+            value: "info"
+          - name: PORT
+            value: "8080"
+          - name: TIME
+            value: "500"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /liveness
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3          
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"      
+```

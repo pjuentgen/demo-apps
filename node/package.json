@@ -11,7 +11,8 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prepare": "husky",
     "lint": "eslint -c .eslintrc.cjs **/*.ts",
-    "dockerize": "docker build . --target production -t ghcr.io/pjuentgen/node-demoapp:latest --no-cache"
+    "dockerize": "docker build . --target production -t ghcr.io/pjuentgen/node-demoapp:latest --no-cache",
+    "dockerize-and-push": "docker build . --target production -t ghcr.io/pjuentgen/node-demoapp:latest --no-cache && docker push ghcr.io/pjuentgen/node-demoapp:latest"
   },
   "keywords": [],
   "author": "",
