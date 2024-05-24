@@ -32,4 +32,4 @@ jobs:
       - name: 'Build Inventory Image'
         run: |
           docker build . --target production --tag ghcr.io/pjuentgen/node-demoapp:${{ steps.vars.outputs.tag }}
-          docker push ghcr.io/pjuentgen/node-demoapp:${{github.ref_name}}
+          docker push ghcr.io/pjuentgen/node-demoapp:latest
