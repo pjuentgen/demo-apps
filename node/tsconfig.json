@@ -109,6 +109,7 @@
     "./typings/**/*",
     "./dist/**/*",
     "./jest.config.ts",
+    "./tsconfig.json",
 ]
   
 }
