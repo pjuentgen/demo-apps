@@ -10,6 +10,8 @@ const config: Config = {
   coveragePathIgnorePatterns: ['/node_modules/'],
 
   coverageProvider: 'v8',
+  
+  modulePathIgnorePatterns: ["<rootDir>/dist/"],
 
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'

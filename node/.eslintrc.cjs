@@ -7,6 +7,7 @@ module.exports = {
     project: null,
     tsconfigRootDir: __dirname
   },
+  ignorePatterns: ['jest.config.ts'],
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     eqeqeq: ['error', 'smart'],
@@ -37,45 +38,6 @@ module.exports = {
     'prettier/prettier': 2
   },
   overrides: [
-    {
-      files: ['tests/**/*'],
-      env: {
-        jest: true
-      }
-    },
-    {
-      files: ['./**/*.cjs'],
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
-        'prettier'
-      ]
-    },
-    {
-      files: ['*.json'],
-      // Enable typescript-eslint for ts files.
-      extends: ['plugin:json/recommended', 'prettier'],
-      parserOptions: {
-        project: './tsconfig.json'
-      },
-      rules: {}
-    },
-    {
-      files: ['tests/**/*'],
-      env: {
-        jest: true
-      }
-    },
-    {
-      files: ['./**/*.cjs'],
-      extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
-        'prettier'
-      ]
-    },
     {
       files: ['*.ts'],
       // Enable typescript-eslint for ts files.
@@ -119,6 +81,28 @@ module.exports = {
         ],
         '@typescript-eslint/no-shadow': ['warn'],
         'prefer-rest-params': 'off',
+        'prettier/prettier': 2
+      }
+    },
+    {
+      files: ['*.js'],
+      extends: [
+        'eslint:recommended',
+        'plugin:prettier/recommended',
+        'prettier'
+      ],
+      parserOptions: {
+        project: './tsconfig.json'
+      },
+      rules: {
+        '@typescript-eslint/...': 'off',
+        'prettier/prettier': 2
+      }
+    },
+    {
+      files: ['*.json'],
+      extends: ['eslint:recommended', 'prettier'],
+      rules: {
         'prettier/prettier': 2
       }
     },
