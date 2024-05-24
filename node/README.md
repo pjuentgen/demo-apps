@@ -16,3 +16,19 @@ For production build, use:
 
 A docker container of this application can be found here:
 `ghcr.io/pjuentgen/node-demoapp:latest`
+
+Options for environment variables
+| Variable   | Descpription   | Default   |
+|---|---|---|
+| PORT | Port the service will listen on |8080|
+| TIME | Time for random time generator |500|
+| TIME_FOR_ERROR | Timethreshold for calls to mark as erroneous |300|
+|READIENESS_DELAY| Time until the redieness endpoint replies | 0 (no delay)|
+|REMOTE_URL|URL that is called with the /remote endpoint | https://api.chucknorris.io/jokes/random |
+
+
+
+Build and push:
+docker-compose -f docker-compose.prod.yml up --build --remove-orphans && \\
+docker image tag node-demoapp ghcr.io/pjuentgen/node-demoapp && \\
+docker push ghcr.io/pjuentgen/node-demoapp:latest 

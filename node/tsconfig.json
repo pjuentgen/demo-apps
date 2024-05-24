@@ -96,8 +96,19 @@
     // "allowUnreachableCode": true,                     /* Disable error reporting for unreachable code. */
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true, /* Skip type checking all .d.ts files. */   
-    "rootDir": "./src" ,
-    "outDir": "./dist"
-  }
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */       
+    "outDir": "./dist",
+    "rootDir": "src",
+    
+  },  
+  "include": [
+    "./**/*"
+],
+"exclude": [
+    "./plugins/**/*",
+    "./typings/**/*",
+    "./dist/**/*",
+    "./jest.config.ts",
+]
+  
 }
