@@ -29,7 +29,11 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
 
+      - name: Get Tag
+        id: vars
+        run: echo ::set-output name=tag::${git describe --abbrev=0}
+  
       - name: 'Build Inventory Image'
         run: |
-          docker build . --target production --tag ghcr.io/pjuentgen/node-demoapp:latest
-          docker push ghcr.io/pjuentgen/node-demoapp:latest
+          docker build . --target production --tag ghcr.io/pjuentgen/node-demoapp:${{ steps.vars.outputs.tag }}
+          docker push ghcr.io/pjuentgen/node-demoapp:${{ steps.vars.outputs.tag }}
