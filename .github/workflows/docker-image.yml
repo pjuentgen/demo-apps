@@ -24,5 +24,5 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --target production --tag ghcr.io/<your-GitHub-username>/node-demoapp:latest
-              docker push ghcr.io/<your-GitHub-username>/node-demoapp:latest
+              docker build . --target production --tag ghcr.io/pjuentgen/node-demoapp:latest
+              docker push ghcr.io/pjuentgen/node-demoapp:latest
