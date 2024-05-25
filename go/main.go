@@ -12,7 +12,6 @@ import (
 
 func main() {
 
-	
 	http.HandleFunc("/", handleDefault)
 
 	http.HandleFunc("/random-error", handleDefault)
@@ -29,12 +28,14 @@ func main() {
 		fmt.Fprintf(w, "Hello World!")
 	})
 
-	http.HandleFunc("/remote", func(w http.ResponseWriter, r *http.Request) {		
+	http.HandleFunc("/remote", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Request to /remote")
+		fmt.Println("Connecting to ")
 		url := os.Getenv("REMOTE_URL")
 		if url == "" {
 			url = "https://api.chucknorris.io/jokes/random"
 		}
+		fmt.Println("Connecting to " + url)
 
 		resp, err := http.Get(url)
 		if err != nil {
@@ -65,32 +66,31 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func handleDefault(responseWriter http.ResponseWriter, request *http.Request) {	
-		fmt.Println("Request to /")		
-		timeEnv := os.Getenv("TIME")
-		var timeInt int = 500
-		var timeErrorInt int = 300
-		if timeEnv != "" {
-			t, err := strconv.Atoi(timeEnv)
-			if err == nil {
-				timeInt = t
-			}	
+func handleDefault(responseWriter http.ResponseWriter, request *http.Request) {
+	fmt.Println("Request to /")
+	timeEnv := os.Getenv("TIME")
+	var timeInt int = 500
+	var timeErrorInt int = 300
+	if timeEnv != "" {
+		t, err := strconv.Atoi(timeEnv)
+		if err == nil {
+			timeInt = t
 		}
-		timeErrorEnv := os.Getenv("TIME_FOR_ERROR")		
-		if timeErrorEnv != "" {
-			t, err := strconv.Atoi(timeErrorEnv)
-			if err == nil {
-				timeErrorInt = t
-			}	
-		}
-
-		randomNumber := rand.IntN(timeInt)
-		time.Sleep(time.Millisecond * time.Duration(randomNumber))
-		if randomNumber > timeErrorInt {
-			fmt.Fprintf(responseWriter, "Hello World!")
-		} else {
-			responseWriter.WriteHeader(http.StatusInternalServerError)
-			responseWriter.Write([]byte("Error occured"))
+	}
+	timeErrorEnv := os.Getenv("TIME_FOR_ERROR")
+	if timeErrorEnv != "" {
+		t, err := strconv.Atoi(timeErrorEnv)
+		if err == nil {
+			timeErrorInt = t
 		}
 	}
 
+	randomNumber := rand.IntN(timeInt)
+	time.Sleep(time.Millisecond * time.Duration(randomNumber))
+	if randomNumber > timeErrorInt {
+		fmt.Fprintf(responseWriter, "Hello World!")
+	} else {
+		responseWriter.WriteHeader(http.StatusInternalServerError)
+		responseWriter.Write([]byte("Error occured"))
+	}
+}
