@@ -103,7 +103,7 @@
   },  
   "include": [
     "./**/*.ts"
-],
+, "src/logger.js"],
 "exclude": [
     "./plugins/**/*",
     "./typings/**/*",
