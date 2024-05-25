@@ -55,13 +55,13 @@ app.get('/remote', async (req, res) => {
 
 app.get('/liveness', (req, res) => {
   console.log('Request to /liveness');
-  res.send('OK');
+  res.send('Live');
 });
 
 app.get('/readiness', (req, res) => {
   console.log('Request to /readiness');
   setTimeout(() => {
-    res.send('OK');
+    res.send('Ready');
   }, READIENESS_DELAY);
 });
 
