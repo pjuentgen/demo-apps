@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
+import axios from 'axios';
 import express, { Express } from 'express';
-import fetch from 'node-fetch';
 
 const app: Express = express();
 
@@ -51,8 +51,8 @@ app.get('/remote', async (req, res) => {
   console.log('Request to /remote');
   console.log('Connecting to ' + REMOTE_URL);
   try {
-    const data = await fetch(REMOTE_URL);
-    const body = await data.json();
+    const response = await axios.get(REMOTE_URL);
+    const body = response.data;
     res.send(body);
   } catch (error) {
     console.error('Error occurred while fetching remote data:', error);
