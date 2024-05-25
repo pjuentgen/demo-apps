@@ -48,9 +48,14 @@ app.get('/healthy', (req, res) => {
 
 app.get('/remote', async (req, res) => {
   console.log('Request to /remote');
-  const data = await fetch(REMOTE_URL);
-  const body = await data.json();
-  res.send(body);
+  try {
+    const data = await fetch(REMOTE_URL);
+    const body = await data.json();
+    res.send(body);
+  } catch (error) {
+    console.error('Error occurred while fetching remote data:', error);
+    res.status(500).send('Error occurred while fetching remote data');
+  }
 });
 
 app.get('/liveness', (req, res) => {
