@@ -21,8 +21,7 @@ public class DemoApplication {
 
         @RequestMapping({ "/", "/random-error" })
         public ResponseEntity<?> home() throws InterruptedException {
-                // get the time for error from the environment variable if not set then set it
-                // to 300
+                System.out.println("Call to / or /random-error");
                 int time = 500;
                 String timeEnv = System.getenv("TIME");
                 if (timeEnv != null) {
@@ -44,6 +43,7 @@ public class DemoApplication {
 
         @RequestMapping("/remote")
         public String remote() throws URISyntaxException {
+                System.out.println("Call to /remote");
                 try {
                         String apiUrl = System.getenv("REMOTE_URL");
                         if (apiUrl == null) {
@@ -51,6 +51,7 @@ public class DemoApplication {
                         }
                         URI uri = new URI(apiUrl);
                         URL url = uri.toURL();
+                        System.out.println("Connecting to" + apiUrl);
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
 
@@ -77,21 +78,25 @@ public class DemoApplication {
 
         @RequestMapping("/healthy")
         public String healthy() {
+                System.out.println("Call to /healthy");
                 return "Hello World!";
         }
 
         @RequestMapping("/bad")
         public ResponseEntity<?> bad() {
+                System.out.println("Call to /bad");
                 return new ResponseEntity<>("bad", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         @RequestMapping("/readiness")
         public String readiness() {
+                System.out.println("Call to /readiness");
                 return "Ready";
         }
 
         @RequestMapping("/liveness")
         public String liveness() {
+                System.out.println("Call to /live");
                 return "Live";
         }
 

@@ -48,6 +48,7 @@ app.get('/healthy', (req, res) => {
 
 app.get('/remote', async (req, res) => {
   console.log('Request to /remote');
+  console.log('Connecting to ' + REMOTE_URL);
   const data = await fetch(REMOTE_URL);
   const body = await data.json();
   res.send(body);
