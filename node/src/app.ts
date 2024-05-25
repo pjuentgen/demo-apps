@@ -1,12 +1,12 @@
+import opentelemetry from '@opentelemetry/api';
 import axios from 'axios';
 import express, { Express } from 'express';
+
 import logger from './logger';
 
-const opentelemetry = require('@opentelemetry/api');
-const { MeterProvider } = require('@opentelemetry/sdk-metrics');
-
-opentelemetry.metrics.setGlobalMeterProvider(new MeterProvider());
-const counter = opentelemetry.metrics.getMeter('default').createCounter('otel-counted-requests');
+const counter = opentelemetry.metrics
+  .getMeter('default')
+  .createCounter('otel-counted-requests');
 
 const app: Express = express();
 
@@ -17,7 +17,7 @@ const REMOTE_URL: string =
   process.env.REMOTE_URL || 'https://api.chucknorris.io/jokes/random';
 
 app.get('/', (req, res) => {
-  logger.info('Request to /')
+  logger.info('Request to /');
   counter.add(1, { url: '/' });
   const randomTime = Math.floor(Math.random() * TIME);
 
