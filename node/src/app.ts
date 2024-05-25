@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import express, { Express } from 'express';
+import fetch from 'node-fetch';
 
 const app: Express = express();
 
