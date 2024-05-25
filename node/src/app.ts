@@ -2,7 +2,7 @@ import opentelemetry from '@opentelemetry/api';
 import axios from 'axios';
 import express, { Express } from 'express';
 
-import logger from './logger';
+import { logger } from './logger';
 
 const counter = opentelemetry.metrics
   .getMeter('default')
