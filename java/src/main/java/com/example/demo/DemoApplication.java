@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.springframework.boot.SpringApplication;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class DemoApplication {
 
-        @SuppressWarnings("null")
         @RequestMapping({ "/", "/random-error" })
         public ResponseEntity<?> home() throws InterruptedException {
                 // get the time for error from the environment variable if not set then set it
@@ -42,13 +43,14 @@ public class DemoApplication {
         }
 
         @RequestMapping("/remote")
-        public String remote() {
+        public String remote() throws URISyntaxException {
                 try {
                         String apiUrl = System.getenv("REMOTE_URL");
                         if (apiUrl == null) {
                                 apiUrl = "https://api.chucknorris.io/jokes/random";
                         }
-                        URL url = new URL("https://api.chucknorris.io/jokes/random");
+                        URI uri = new URI(apiUrl);
+                        URL url = uri.toURL();
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
 
