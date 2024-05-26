@@ -15,4 +15,5 @@ RUN chmod +x /usr/local/bin/run-gunicorn
 
 # CMD ["flask", "run", "-h", "0.0.0.0", "-p", "8080"]
 # CMD ["python", "/src/webapp/app.py"]
+
 CMD ["run-gunicorn"]
