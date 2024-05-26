@@ -1,5 +1,3 @@
-using System.Net.Http;
-
 internal class Program
 {
     private static void Main(string[] args)
@@ -9,7 +7,6 @@ internal class Program
 
         app.MapGet("/", () => "Hello World!");
         app.MapGet("/random-error", () => "Hello World!");
-        using System.Net.Http;
         app.MapGet("/healthy", () => "Hello World!");
         app.MapGet("/liveness", () => "Live");
         app.MapGet("/readiness", () => "Ready");
