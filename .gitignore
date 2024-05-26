@@ -2,3 +2,8 @@ node/node_modules
 node/coverage/
 node/dist/
 .vscode/launch.json
+dotnet/bin
+dotnet/obj
+
+.vscode/tasks.json
+dotnet/Properties/launchSettings.json
