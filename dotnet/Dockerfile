@@ -28,4 +28,4 @@ RUN dotnet publish "dotnet.csproj" -c $configuration -o /app/publish /p:UseAppHo
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "dotnet.dll"]
+CMD ["dotnet", "dotnet.dll"]
