@@ -1,4 +1,4 @@
-name: Create python demo app image and push
+name: Create rust demo app image and push
 
 on:
   push:
