@@ -3,3 +3,7 @@ node/coverage/
 node/dist/
 .vscode/launch.json
 rust/target
+rust/target*
+dotnet/bin
+dotnet/obj
+dotnet-tmp
