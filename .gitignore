@@ -7,3 +7,6 @@ rust/target*
 dotnet/bin
 dotnet/obj
 dotnet-tmp
+.vscode/tasks.json
+dotnet/Properties/launchSettings.json
+
