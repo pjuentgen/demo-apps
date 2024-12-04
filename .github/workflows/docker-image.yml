@@ -22,6 +22,9 @@ jobs:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
 
+      - name: 'Set up Docker Buildx'
+        uses: docker/setup-buildx-action@v2
+
       - name: 'Login to GitHub Container Registry'
         uses: docker/login-action@v1
         with:
@@ -29,7 +32,11 @@ jobs:
           username: ${{github.actor}}
           password: ${{secrets.GITHUB_TOKEN}}
      
-      - name: 'Build Inventory Image'
+      - name: 'Build and Push Multi-Arch Image'
         run: |
-          docker build . --target production --tag ghcr.io/pjuentgen/node-demoapp:latest
-          docker push ghcr.io/pjuentgen/node-demoapp:latest
+          docker buildx create --use
+          docker buildx build . \
+            --platform linux/amd64,linux/arm64 \
+            --target production \
+            --tag ghcr.io/pjuentgen/node-demoapp:latest \
+            --push
