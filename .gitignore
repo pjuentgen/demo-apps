@@ -9,4 +9,5 @@ dotnet/obj
 dotnet-tmp
 .vscode/tasks.json
 dotnet/Properties/launchSettings.json
-
+python/venv
+python/venv/pyvenv.cfg
