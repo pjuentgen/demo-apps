@@ -8,4 +8,5 @@ RUN npm install
 
 COPY . .
 
+
 CMD ["node", "/app/src/app.js"]
