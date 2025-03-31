@@ -38,4 +38,5 @@ jobs:
           docker buildx build . \
             --platform linux/amd64,linux/arm64 \            
             --tag ghcr.io/pjuentgen/callerapp:latest \
+            --target production \
             --push
