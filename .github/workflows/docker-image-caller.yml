@@ -36,7 +36,6 @@ jobs:
         run: |
           docker buildx create --use
           docker buildx build . \
-            --platform linux/amd64,linux/arm64 \
-            --target production \
+            --platform linux/amd64,linux/arm64 \            
             --tag ghcr.io/pjuentgen/callerapp:latest \
             --push
