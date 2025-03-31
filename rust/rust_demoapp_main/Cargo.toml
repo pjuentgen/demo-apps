@@ -1,0 +1,16 @@
+[package]
+name = "rust_demoapp_main"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"
+clap = "4"
+dotenv = "0.15"
+config = "0.13"
+tokio = { version = "1", features = ["full"] }
+axum = { version = "0.6" }
+
+[[bin]]
+name = "rust-demoapp"
+path = "src/main.rs"
