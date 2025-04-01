@@ -2,7 +2,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const urls = process.env.URLS.split(',');
-const interval = parseInt(process.env.INTERVAL, 10) || 5000;
+const interval = parseInt(process.env.INTERVAL, 10) || 1000;
 
 function getRandomUrl() {
     const randomIndex = Math.floor(Math.random() * urls.length);
