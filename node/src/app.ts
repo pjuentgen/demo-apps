@@ -70,7 +70,7 @@ app.get('/remote', async (req, res) => {
     res.send(body);
   } catch (error) {
     logger.error('Error occurred while fetching remote data');
-    res.status(500).send('Error occurred while fetching remote data');
+    res.status(500).send('Error occurred while fetching remote data!');
   }
 });
 
