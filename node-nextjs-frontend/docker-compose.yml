@@ -1,0 +1,12 @@
+# Build and run the Next.js app in Docker
+version: '3.8'
+services:
+  frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_ENDPOINT_1=${NEXT_PUBLIC_API_ENDPOINT_1}
+      - NEXT_PUBLIC_API_ENDPOINT_2=${NEXT_PUBLIC_API_ENDPOINT_2}
+    env_file:
+      - .env.local
