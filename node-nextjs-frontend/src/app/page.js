@@ -1,8 +1,17 @@
 // ...existing code...
 "use client";
 import React from "react";
+import Dash0 from "@dash0hq/sdk-web";
+
 
 export default function Home() {
+  React.useEffect(() => {
+    const dash0ApiKey = process.env.NEXT_PUBLIC_DASH0_API_KEY;
+    const dash0Endpoint = process.env.NEXT_PUBLIC_DASH0_ENDPOINT_URL;
+    if (dash0ApiKey && dash0Endpoint) {
+      Dash0.init({ apiKey: dash0ApiKey, endpoint: dash0Endpoint });
+    }
+  }, []);
   const [response1, setResponse1] = React.useState("");
   const [response2, setResponse2] = React.useState("");
   const endpoint1 = process.env.NEXT_PUBLIC_API_ENDPOINT_1;
