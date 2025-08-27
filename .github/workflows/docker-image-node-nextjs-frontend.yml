@@ -37,6 +37,5 @@ jobs:
           docker buildx create --use
           docker buildx build . \
             --platform linux/amd64,linux/arm64 \
-            --target production \
             --tag ghcr.io/pjuentgen/node--nextjs-frontend-demoapp:latest \
             --push
