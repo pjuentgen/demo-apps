@@ -1,0 +1,5 @@
+# Dash0 API credentials
+dash0.env
+.gradle
+app/build
+.idea

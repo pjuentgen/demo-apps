@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.ChuckNorrisJokes" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="Theme.ChuckNorrisJokes" parent="Base.Theme.ChuckNorrisJokes" />
+</resources>
